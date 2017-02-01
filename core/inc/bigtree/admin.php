@@ -4737,6 +4737,10 @@
 			$tokenized_file = BigTreeCMS::replaceHardRoots($file);
 			$single_domain_tokenized_file = static::stripMultipleRootTokens($tokenized_file);
 			$item = sqlfetch(sqlquery("SELECT * FROM bigtree_resources WHERE file = '".sqlescape($file)."' OR file = '".sqlescape($tokenized_file)."' OR file = '".sqlescape($single_domain_tokenized_file)."'"));
+			$item["foldername"] = sqlfetch(sqlquery("SELECT name FROM bigtree_resource_folders WHERE id = '".$item["folder"]."'"));
+			if ($item["folder"] == "") {
+				$item["foldername"] = array("name"=>"Home");
+			}
 			
 			if (!$item) {
 				foreach (static::$IRLPrefixes as $prefix) {

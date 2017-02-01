@@ -27,6 +27,7 @@
 	<p><span>Height</span><strong><?=$file["height"]?></strong></p>
 	<? } ?>
 	<p><span>Uploaded</span><strong><?=date("n/j/y @ g:ia",strtotime($file["date"]))?></strong></p>
+	<p><span>Folder</span><strong><?=$file["foldername"]["name"]?></strong></p>
 </div>
 <?
 	if ($admin->Level) {
